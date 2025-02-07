@@ -1,6 +1,7 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../../../assets/images/logo.png";
 import Button from "../Button/Button";
 import "./Navbar.css";
 
@@ -23,7 +24,8 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold text-gray-800">EMS</span>
+            {/* <span className="text-xl font-bold text-gray-800">EMS</span> */}
+            <img src={logo} className="w-26" alt="Logo" />
           </div>
 
           {/* Desktop Menu */}
