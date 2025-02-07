@@ -12,32 +12,31 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { text: "Home", href: "", isPrivate: false },
-    { text: "Events", href: "/events", isPrivate: false },
-    { text: "Create Event", href: "/services", isPrivate: true },
+    { text: "Home", to: "", isPrivate: false },
+    { text: "Events", to: "/events", isPrivate: false },
+    { text: "Create Event", to: "/create-event", isPrivate: true },
   ];
 
   return (
-    <nav className="py-8 nav">
+    <nav className="pt-2 pb-8 nav">
       <div>
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            {/* <span className="text-xl font-bold text-gray-800">EMS</span> */}
             <img src={logo} className="w-26" alt="Logo" />
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <NavLink key={item.text} to={item.href} className={`text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium`}>
+              <NavLink key={item.text} to={item.to} className={`text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium`}>
                 {item.text}
               </NavLink>
             ))}
           </div>
 
           <div className="flex gap-2 items-center">
-            <Link to="/login" className="bg-[#007bff] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#007bff]/90">
+            <Link to="/login" className="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90">
               Login
             </Link>
 
@@ -56,7 +55,7 @@ const Navbar = () => {
       <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {menuItems.map((item) => (
-            <NavLink key={item.text} to={item.href} className="text-gray-600 hover:text-gray-900 block px-3 py-2 border-b text-base font-medium">
+            <NavLink key={item.text} to={item.to} className="text-gray-600 hover:text-gray-900 block px-3 py-2 border-b text-base font-medium">
               {item.text}
             </NavLink>
           ))}

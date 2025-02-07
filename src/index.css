@@ -2,6 +2,8 @@
 
 @import "tailwindcss";
 
+/* tailwind css config */
+
 @layer base {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -9,10 +11,14 @@
   }
 }
 
-* {
-  font-family: "Poppins", serif;
+/* custom tailwind styles */
+
+@theme {
+  --font-poppins: "Poppins", "serif";
+  --color-primary: #007bff;
 }
 
+/* normal css */
 html {
   scroll-behavior: smooth;
 }
