@@ -2,7 +2,6 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import Button from "../Button/Button";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -38,8 +37,8 @@ const Navbar = () => {
           </div>
 
           <div className="flex gap-2 items-center">
-            <Link to="/login">
-              <Button>Login</Button>
+            <Link to="/login" className="bg-[#007bff] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#007bff]/90">
+              Login
             </Link>
 
             {/* Mobile menu button */}

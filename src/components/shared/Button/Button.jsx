@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 const Button = ({ children }) => {
-  return <button className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 cursor-pointer">{children}</button>;
+  return <button className="bg-[#007bff] text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-[#007bff]/90">{children}</button>;
 };
 
 export default Button;
