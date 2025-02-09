@@ -3,9 +3,11 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingModal from "../../components/shared/LoadingModal/LoadingModal";
+import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
+  const { profileLoader, setProfileLoader } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axios = useAxios();
@@ -32,6 +34,7 @@ const Register = () => {
           setIsLoading(false);
           localStorage.setItem("token", res.data.token);
           e.target.reset();
+          setProfileLoader(!profileLoader);
           toast.success("Registration successful");
           navigate("/");
         } else {
