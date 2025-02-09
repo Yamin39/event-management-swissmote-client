@@ -9,6 +9,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const { currentUser, loading, logOut } = useAuth();
+  const role = currentUser?.role;
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const cardRef = useRef(null);
@@ -18,10 +19,14 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { text: "Home", to: "", isPrivate: false },
-    { text: "Events", to: "/events", isPrivate: false },
-    { text: "Create Event", to: "/create-event", isPrivate: true },
+    { text: "Home", to: "", isAdminOnly: false },
+    { text: "Events", to: "/events", isAdminOnly: false },
+    { text: "Create Event", to: "/create-event", isAdminOnly: true },
+    { text: "Manage Events", to: "/manage-events", isAdminOnly: true },
   ];
+
+  // Filter menu items based on user role
+  const filteredMenuItems = menuItems.filter((item) => !item.isAdminOnly || role === "admin");
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -46,6 +51,7 @@ const Navbar = () => {
     toast.success("Logged out successfully");
     setIsProfileOpen(false);
   };
+
   return (
     <nav className="pt-2 pb-8 nav">
       <div>
@@ -57,7 +63,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item) => (
+            {filteredMenuItems.map((item) => (
               <NavLink key={item.text} to={item.to} className={`text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium`}>
                 {item.text}
               </NavLink>
@@ -130,7 +136,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {menuItems.map((item) => (
+          {filteredMenuItems.map((item) => (
             <NavLink key={item.text} to={item.to} className="text-gray-600 hover:text-gray-900 block px-3 py-2 border-b text-base font-medium">
               {item.text}
             </NavLink>
