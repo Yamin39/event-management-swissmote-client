@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageEvents = () => {
@@ -61,7 +60,6 @@ const ManageEvents = () => {
                 <th className="p-3">Name</th>
                 <th className="p-3">Date & Time</th>
                 <th className="p-3">Description</th>
-                <th className="p-3">Update</th>
                 <th className="p-3">Delete</th>
               </tr>
             </thead>
@@ -79,11 +77,6 @@ const ManageEvents = () => {
                   </td>
                   <td className="p-2">
                     <p>{event.description.slice(0, 40)}...</p>
-                  </td>
-                  <td className="p-2">
-                    <Link to={`/dashboard/updateEvent/${event._id}`} className="px-3 py-1 font-semibold rounded-md bg-primary text-white cursor-pointer">
-                      <span>Update</span>
-                    </Link>
                   </td>
                   <td className="p-2">
                     <button onClick={() => handleDelete(event._id)} className="px-3 py-1 font-semibold rounded-md bg-red-500 text-white cursor-pointer">

@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
+import CreateEvent from "../pages/CreateEvent/CreateEvent";
+import Events from "../pages/Events/Events";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import ManageEvents from "../pages/ManageEvents/ManageEvents";
 import Profile from "../pages/Profile/Profile";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
-import CreateEvent from "../pages/CreateEvent/CreateEvent";
-import ManageEvents from "../pages/ManageEvents/ManageEvents";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             <ManageEvents></ManageEvents>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/events",
+        element: <Events></Events>,
       },
     ],
   },
