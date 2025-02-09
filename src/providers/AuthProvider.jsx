@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
         })
         .then((data) => {
           setCurrentUser(data?.data);
-          console.log(data?.data);
+          console.log("Current Logged In User:", data?.data);
         });
       setLoading(false);
     } else {
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     currentUser,
-    loading,    
+    loading,
     setLoading,
     profileLoader,
     logOut,

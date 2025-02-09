@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingModal from "../../components/shared/LoadingModal/LoadingModal";
@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
-  const { profileLoader, setProfileLoader } = useAuth();
+  const { currentUser, profileLoader, setProfileLoader } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axios = useAxios();
@@ -57,6 +57,12 @@ const Register = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   return (
     <>

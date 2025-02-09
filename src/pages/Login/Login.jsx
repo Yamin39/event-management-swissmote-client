@@ -1,8 +1,11 @@
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -22,6 +25,12 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-blue-50 mb-20 flex items-center justify-center p-10 md:p-20 rounded-2xl">
