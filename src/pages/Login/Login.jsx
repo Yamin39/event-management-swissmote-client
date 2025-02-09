@@ -31,7 +31,6 @@ const Login = () => {
         if (res.data.result?.isLogin) {
           toast.success("Login Successful");
           localStorage.setItem("token", res.data.token);
-          e.target.reset();
           setProfileLoader(!profileLoader);
           navigate("/");
           setIsLoading(false);

@@ -33,7 +33,6 @@ const Register = () => {
           console.log("Registration successful:", res.data);
           setIsLoading(false);
           localStorage.setItem("token", res.data.token);
-          e.target.reset();
           setProfileLoader(!profileLoader);
           toast.success("Registration successful");
           navigate("/");
