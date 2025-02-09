@@ -1,5 +1,6 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -98,9 +99,9 @@ const Register = () => {
 
         <div className="text-sm text-center">
           <span className="text-gray-500">Have any account? </span>
-          <a href="#" className="text-gray-900 hover:underline">
+          <Link to="/login" className="text-gray-900 hover:underline">
             Log in
-          </a>
+          </Link>
           <div className="mt-2">
             <a href="#" className="text-gray-900 hover:underline">
               Terms & Conditions
