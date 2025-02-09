@@ -1,7 +1,14 @@
+import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Profile = () => {
   const { currentUser, loading } = useAuth();
+
+  if (currentUser.role === "guest") {
+    toast.error("Guests cannot access this page, please login or register");
+    return <Navigate to="/"></Navigate>;
+  }
 
   // Generate initials for avatar
   const getInitials = (name) => {

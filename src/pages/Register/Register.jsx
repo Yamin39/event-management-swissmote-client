@@ -50,6 +50,31 @@ const Register = () => {
       });
   };
 
+  const handleGuestLogin = () => {
+    setIsLoading(true);
+    axios
+      .post("/auth/guest-login")
+      .then((res) => {
+        if (res.data.token) {
+          console.log("Guest login successful:", res.data);
+          setIsLoading(false);
+          localStorage.setItem("token", res.data.token);
+          setProfileLoader(!profileLoader);
+          toast.success("Guest login successful");
+          navigate("/");
+        } else {
+          setIsLoading(false);
+          toast.error("Guest login failed, please try again");
+          console.error("Guest login failed:", res.data);
+        }
+      })
+      .catch((err) => {
+        console.error("Guest login failed:", err);
+        setIsLoading(false);
+        toast.error("Guest login failed, please try again");
+      });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -151,6 +176,15 @@ const Register = () => {
                 Terms & Conditions
               </a>
             </div>
+          </div>
+
+          <div className="text-center mt-4">
+            <button
+              onClick={handleGuestLogin}
+              className="w-full py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800"
+            >
+              Continue as Guest
+            </button>
           </div>
         </div>
       </div>
