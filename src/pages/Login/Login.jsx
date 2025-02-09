@@ -101,6 +101,7 @@ const Login = () => {
                     required
                     value={formData.password}
                     onChange={handleChange}
+                    minLength={6}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <button
