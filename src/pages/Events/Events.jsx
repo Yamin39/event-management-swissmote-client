@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, Clock } from "lucide-react";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Events = () => {
   const axios = useAxios();
   const axiosSecure = useAxiosSecure();
+  const { currentUser } = useAuth();
 
   const {
     data: events = [],
@@ -26,6 +29,30 @@ const Events = () => {
       </div>
     );
   }
+
+  const handleAttend = async (id) => {
+    console.log(id, "attend");
+
+    if (!currentUser) {
+      toast.error("Please login to attend the event");
+      return;
+    } else if (currentUser.role === "guest") {
+      toast.error("Guests cannot attend events, please login or register");
+      return;
+    }
+
+    try {
+      const res = await axiosSecure.put(`/events/${id}/attend`);
+      if (res.data.attended) {
+        toast.success(res.data.message);
+        refetch();
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="pb-24">
@@ -60,7 +87,10 @@ const Events = () => {
                 </div>
               </div>
 
-              <button className=" mt-2 px-4 py-2 bg-red-500 text-white text-center rounded-md hover:bg-yellow-600 transition-colors duration-300">
+              <button
+                onClick={() => handleAttend(seminar._id)}
+                className=" mt-2 px-4 py-2 bg-red-500 text-white text-center rounded-md hover:bg-yellow-600 transition-colors duration-300"
+              >
                 Attend
               </button>
             </div>
