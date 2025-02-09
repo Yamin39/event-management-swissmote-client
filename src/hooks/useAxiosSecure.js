@@ -2,6 +2,7 @@ import axios from "axios";
 
 const axiosSecure = axios.create({
   baseURL: "https://event-management-swissmote-server.vercel.app",
+  withCredentials: true,
 });
 
 const useAxiosSecure = () => {
