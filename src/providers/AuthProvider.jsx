@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       axiosSecure.get("/auth").then((data) => {
         setCurrentUser(data?.data);
-        console.log("Current Logged In User:", data?.data);
+        console.log("user:", data?.data);
       });
       setLoading(false);
     } else {
